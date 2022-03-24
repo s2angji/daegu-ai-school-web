@@ -5,38 +5,12 @@
     <title>WEB</title>
     <meta charset="utf-8">
     <style>
-        h1 {
-            border-bottom: 10px solid red;
-            padding-bottom: 30px;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
         body {
             font-family: 'Palette Mosaic', cursive;
         }
-
-        @media all and (min-width: 480px) {
-            #container {
-                display: grid;
-                grid-template-columns: 200px 1fr;
-            }
-        }
-
-        @media all and (min-width: 480px) and (max-width: 768px) {
-            body {
-                background-color: green;
-            }
-        }
-
-        @media all and (max-width: 480px) {
-            body {
-                background-color: red;
-            }
-        }
     </style>
+    <link rel="stylesheet" href="style.css">
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6VJVSKKBV4"></script>
     <script>
@@ -55,9 +29,43 @@
 </head>
 
 <body>
+    <input type="button" value="night" onclick="
+        const toggle = {
+            value: ['night', 'day'],
+            backgroundColor: ['black', 'white'],
+            color: ['white', 'black'],
+            getIndex: () => toggle.value.indexOf(this.value)
+        };
+        
+        document.querySelector('body').style.backgroundColor = toggle.backgroundColor[toggle.getIndex()];
+        document.querySelector('body').style.color = toggle.color[toggle.getIndex()];
+        document.querySelectorAll('a').forEach(a => a.style.color = toggle.color[toggle.getIndex()]);
+        this.value = toggle.value[(toggle.getIndex() + 1) % 2]
+    ">
+    
+    <input type="button" id="dnbtn" value="night" onclick="
+        let button = document.querySelector('#dnbtn');
+        if (button.value === 'night') {
+            document.querySelector('body').style.backgroundColor = 'black';
+            document.querySelector('body').style.color = 'white';
+            document.querySelectorAll('a').forEach(a => a.style.color = 'white');
+            button.value = 'day';
+        }
+        else {
+            document.querySelector('body').style.backgroundColor = 'white';
+            document.querySelector('body').style.color = 'black';
+            document.querySelectorAll('a').forEach(a => a.style.color = 'black');
+            button.value = 'night';
+        }
+
+        var aTags = document.querySelectorAll('a');
+        aTags
+    ">
     <h1><a href="index.html">WEB</a></h1>
-    <input type="button" value="night mode" onclick="document.querySelector('body').style.backgroundColor = 'black';document.querySelector('body').style.color = 'white';">
-    <input type="button" value="day mode" onclick="document.querySelector('body').style.backgroundColor = 'white';document.querySelector('body').style.color = 'black';">
+    <input type="button" value="night" onclick="document.querySelector('body').style.backgroundColor = 'black';document.querySelector('body').style.color = 'white';">
+    <input type="button" value="day" onclick="
+    document.querySelector('body').style.backgroundColor = 'white';
+    document.querySelector('body').style.color = 'black';">
     <div id="container">
         <ol>
             <li><a href="1.html">html</a></li>
